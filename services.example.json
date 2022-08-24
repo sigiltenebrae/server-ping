@@ -1,0 +1,11 @@
+{
+  "port": 3233,
+  "apiKey": "asdkfhkjhekhls",
+  "services": [
+    {
+      "name": "test-service",
+      "icon": "/icons/sonarr.png",
+      "address": "192.168.1.22:8989"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "server-ping-v2",
+  "scripts": {
+    "start": "node server-ping.js ./services.json"
+  },
+  "keywords": [],
+  "author": "sigiltenebrae",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "is-reachable": "^5.2.1"
+  }
+}
