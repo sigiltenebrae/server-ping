@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const isReachable = require("is-reachable");
+const {response} = require("express");
 
 const args = process.argv;
 const settings = args.length === 2 ? require("./services.example.json"): require(args[2]);
@@ -51,6 +52,30 @@ app.get('/api/services', (request, response) => {
    }
 });
 
+
+app.get('/api/services/:name', async (request, response) => {
+   if (request.query.apiKey === settings.apiKey) {
+      const name = request.params.name;
+      let service = settings.services.find(i => i.name === name);
+      if (service) {
+         let online = await isReachable(service.address);
+         response.json({
+                name: service.name,
+                address: service.address,
+                icon: service.icon,
+                online: online
+             });
+      } else {
+         response.json({
+            message: "service not found"
+         });
+      }
+   } else {
+      response.json({
+         message: "invalid api key"
+      });
+   }
+})
 
 
 var server = app.listen(port, function() {
